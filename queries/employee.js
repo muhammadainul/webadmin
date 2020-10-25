@@ -6,13 +6,13 @@ const _ = require('lodash')
 const { post } = require('../libs/request')
 const service = require('../config/service')
 
-exports.getAllEmployeeData = (data) =>
+exports.getAllEmployeeData = (data, accessToken) =>
     new Promise(async(resolve, reject) => {
         let log = debug('webadmin:queries:getAllEmployeeData')
-        log('[webadmin][Query] getAllEmployeeData', data)
+        log('[webadmin][Query] getAllEmployeeData', { data, accessToken })
         try {
             const url = service.api + 'admin/getAllEmployee'
-            let headers = { Authorization: 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImtmbWx4ZzhiMGcyb2U0YTg5NTduZXhtYiIsImVtYWlsIjoiYWludWxzYXlhQGdtYWlsLmNvbSIsImlhdCI6MTYwMzQ3NTgxNCwiZXhwIjoxNjAzNDg2NjE0fQ.LeXt5ZjXK_rWxfopJFmmzxk8QarykF-3Oc1EdhbaY8Q' }
+            let headers = { Authorization: 'Bearer ' + accessToken}
             const body = data
             log('url, headers, body', { url, headers, body })
             let response = await post(url, headers, body)

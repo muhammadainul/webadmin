@@ -8,7 +8,9 @@ async function listPage (req, res) {
     let log = debug('webadmin:customer:listPage')
     log('[webadmin][customer] listPage') 
     try {
-        res.render('../views/pages/customer/index')
+        res.render('../views/pages/customer/index', { 
+            session: req.session.user 
+        })
     } catch (error) {
         throw error
     }
@@ -19,7 +21,8 @@ async function getAllCustomer (req, res) {
     let data = req.body
     log('[webadmin][customer] getAll', data)
     try {
-        let result = await Customer.getAllCustomerData(data)
+        const accessToken = req.session.user.data.accessToken
+        const result = await Customer.getAllCustomerData(data, accessToken)
         log('result', result.data)
         
         return res.send(result).data

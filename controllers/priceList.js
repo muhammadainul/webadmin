@@ -8,7 +8,10 @@ async function listPage (req, res) {
     let log = debug('webadmin:priceList:listPage')
     log('[webadmin][priceList] listPage') 
     try {
-        res.render('../views/pages/price/index')
+        res.render('../views/pages/price/index', { 
+            isLoggedIn: true,
+            session: req.session.user 
+        })
     } catch (error) {
         throw error
     }
@@ -19,7 +22,8 @@ async function getAllPriceList (req, res) {
     let data = req.body
     log('[webadmin][pricelist] getAllPriceList', data)
     try {
-        let result = await Pricelist.getAllPriceList(data)
+        const accessToken = req.session.user.data.accessToken
+        const result = await Pricelist.getAllPriceList(data, accessToken)
         log('result', result.data)
         
         return res.send(result).data

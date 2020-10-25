@@ -29,16 +29,19 @@ jQuery(document).ready(function() {
             { data: "firstname", orderable: false },
             { data: "lastname", orderable: false },
             { data: "phone", orderable: false },
-            { data: "address", orderable: true }
+            { data: "address", orderable: true },
+            { data: "id", orderable: false }
         ],
         columnDefs: [
-            // {
-            //     targets     : 4,
-            //     createdCell : (td, cellData, rowData, row, col) => {
-            //         jQuery(td).html("<button class='btn btn-primary'><a href='/community/detail/" + cellData + "'style='color: white;'>View</a></button></td>");
-            //         console.log(cellData);
-            //     }
-            // }
+            {
+                targets     : 5,
+                createdCell : (td, cellData, rowData, row, col) => {
+                    jQuery(td).html(`<center>
+                    <a href='/community/detail/'` + cellData + ` style='margin: 5px'><span class='glyphicon glyphicon-eye-open' aria-hidden='true'></span></a>
+                    <a href='/community/detail/'` + cellData + ` style='margin: 5px'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a>
+                    </center>`);
+                }
+            }
         ]
     });
     // jQuery("#buttonFilterCustomer").click(() => {
