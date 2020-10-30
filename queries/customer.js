@@ -23,3 +23,20 @@ exports.getAllCustomerData = (data, accessToken) =>
             throw error
         }
     })
+
+exports.deleteById = (id, accessToken) =>
+    new Promise(async(resolve, reject) => {
+        let log = debug('webadmin:queries:deleteCustomer')
+        log('[webadmin][customer][Query] deleteById', { id, accessToken })
+        try {
+            const url = service.api + 'user/delete'
+            let headers = { Authorization: 'Bearer ' + accessToken}
+            const body = { id }
+            log('url, headers, body', { url, headers, body })
+            const response = await post(url, headers, body)
+            log('response', response)
+            resolve(response)
+        } catch (error) {
+            throw error
+        }
+    })

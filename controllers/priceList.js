@@ -22,7 +22,7 @@ async function getAllPriceList (req, res) {
     let data = req.body
     log('[webadmin][pricelist] getAllPriceList', data)
     try {
-        const accessToken = req.session.user.data.accessToken
+        const accessToken = req.session.accessToken
         const result = await Pricelist.getAllPriceList(data, accessToken)
         log('result', result.data)
         

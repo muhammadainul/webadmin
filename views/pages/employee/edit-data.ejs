@@ -1,0 +1,111 @@
+<%-include('../../header/header.ejs')%>
+
+<%-include('../../navigation/nav.ejs')%>
+
+<%-include('../../menubar/top.ejs')%>
+
+<!-- page content -->
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Edit Data Employee</h3>
+            </div>
+
+            <!-- <div class="title_right">
+                <div class="col-md-5 col-sm-5 form-group pull-right top_search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Go!</button>
+                        </span>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2><small>Employee</small></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                        </ul>
+                        <div class="clearfix"></div>
+                        <div class="col-lg-12">
+                            <% if (errors) { %>
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <span style="text-align: center; color: white;"><%= errors %></span>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true" style="color: white;">&times;</span>
+                                    </button>
+                                </div>
+                            <% } %>
+                        </div>
+                    </div>
+                    <div class="x_content">
+                        <form action="/employee/editEmployee" method="post" validate>
+                            <div class="field item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3  label-align">ID<span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6">
+                                    <input class="form-control" type="text" data-validate-length-range="6" data-validate-words="2" name="id" placeholder="id.." value="<%= employee.id %>" required="required" readonly/>
+                                </div>
+                            </div>
+                            <div class="field item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3  label-align">Firstname<span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6">
+                                    <input class="form-control" type="text" data-validate-length-range="6" data-validate-words="2" name="firstname" placeholder="firstname.." value="<%= employee.firstname %>" required="required" />
+                                </div>
+                            </div>
+                            <div class="field item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3  label-align">Lastname<span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6">
+                                    <input class="form-control" type="text" class='optional' name="lastname" id='lastname' value="<%= employee.lastname %>" placeholder="lastname.." data-validate-length-range="5,15"/></div>
+                            </div>
+                            <!-- <div class="field item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3  label-align">Password<span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6">
+                                    <input class="form-control" type="password" id="password1" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}" title="Minimum 8 Characters Including An Upper And Lower Case Letter, A Number And A Unique Character" required />
+                                    
+                                    <span style="position: absolute;right:15px;top:7px;" onclick="hideshow()" >
+                                        <i id="slash" class="fa fa-eye-slash"></i>
+                                        <i id="eye" class="fa fa-eye"></i>
+                                    </span>
+                                </div>
+                            </div> -->
+                            <div class="field item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3  label-align">Phone<span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6">
+                                    <input class="form-control" type="text" class='tel' name="phone" id='phone' value="<%= employee.phone %>" placeholder="phone.." required='required' data-validate-length-range="8,20" /></div>
+                            </div>
+                            <div class="field item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3  label-align">Address<span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6">
+                                    <textarea required="required" class="form-control" name='address' placeholder="address.."><%= employee.address %></textarea></div>
+                            </div>
+                            <div class="field item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3  label-align">Photo<span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6">
+                                    <input type="file" required="required" class="form-control" name='file' id="file" placeholder="file.."></input></div>
+                            </div>
+                            <div class="ln_solid">
+                                <div class="form-group">
+                                    <div class="col-md-6 offset-md-3">
+                                        <button type='submit' class="btn btn-primary openActionEditEmployee" data-toggle='modal'>Edit</button>
+                                        <button type='reset' class="btn btn-success">Reset</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /page content -->
+<%-include('../../modals/employee/edited.ejs')%>
+
+<%-include('../../footer/footer.ejs')%> 

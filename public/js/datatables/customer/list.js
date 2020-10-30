@@ -37,10 +37,11 @@ jQuery(document).ready(function() {
                 targets     : 5,
                 createdCell : (td, cellData, rowData, row, col) => {
                     jQuery(td).html(`<center>
-                    <a href='/community/detail/'` + cellData + ` style='margin: 5px'><span class='glyphicon glyphicon-eye-open' aria-hidden='true'></span></a>
-                    <a href='/community/detail/'` + cellData + ` style='margin: 5px'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a>
+                    <a href='' style='margin: 5px'><span class='glyphicon glyphicon-eye-open' aria-hidden='true'></span></a>
+                    <a href='#' class='openDeleteConfirmation' data-id=` + cellData + ` style='margin: 5px' data-toggle='modal'>
+                    <span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a>
                     </center>`);
-                    console.log(cellData);
+                    console.log('dataKuy', cellData);
                 }
             }
         ]

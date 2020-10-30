@@ -22,7 +22,7 @@ async function getAllOrders (req, res) {
     let data = req.body
     log('[webadmin][orders] getAllOrders', data)
     try {
-        const accessToken = req.session.user.data.accessToken
+        const accessToken = req.session.accessToken
         const result = await Orders.getAllOrdersData(data, accessToken)
         log('result', result.data)
         

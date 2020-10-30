@@ -21,7 +21,7 @@ async function getAllCustomer (req, res) {
     let data = req.body
     log('[webadmin][customer] getAll', data)
     try {
-        const accessToken = req.session.user.data.accessToken
+        const accessToken = req.session.accessToken
         const result = await Customer.getAllCustomerData(data, accessToken)
         log('result', result.data)
         
@@ -31,7 +31,23 @@ async function getAllCustomer (req, res) {
     }
 }
 
+async function deleteCustomer (req, res) {
+    let log = debug('webadmin:customer:deleteCustomer')
+    let data = req.body
+    log('[webadmin][customer] deleteCustomer', data)
+    try {
+        const { id } = req.body
+        const accessToken = req.session.accessToken
+        const deleted = await Customer.deleteById(id, accessToken)
+        
+        // res.redirect('/customer')
+    } catch (error) {
+        throw error
+    }
+}
+
 module.exports = {
     listPage,
-    getAllCustomer
+    getAllCustomer,
+    deleteCustomer
 } 

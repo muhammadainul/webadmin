@@ -32,9 +32,11 @@ async function login (req, res) {
         const exists = await Users.getAccount(email, password)
         log('exists', exists)
 
-        if (_.isEmpty(exists.data)) return res.render('../views/pages/login', { errors: 'Invalid credentials.' })
+        if (!_.isEmpty(exists.message)) return res.render('../views/pages/login', { errors: exists.message })
         
         req.session.isLoggedIn = true
+        req.session.accessToken = exists.accessToken
+        req.session.refreshToken = exists.refreshToken
         req.session.user = exists
         log('session', req.session)
 
