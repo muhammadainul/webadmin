@@ -6,12 +6,12 @@ const _ = require('lodash')
 const { post } = require('../libs/request')
 const service = require('../config/service')
 
-exports.getAllPriceList = (data, accessToken) =>
+exports.getAllMenu = (data, accessToken) =>
     new Promise(async(resolve, reject) => {
-        let log = debug('webadmin:queries:getAllPriceList')
-        log('[webadmin][Query] getAllPriceList', { data, accessToken })
+        let log = debug('webadmin:menu:queries:getAllMenu')
+        log('[webadmin][menu][Query] getAllMenu', { data, accessToken })
         try {
-            const url = service.api + 'admin/getAllPricelist'
+            const url = service.api + 'admin/getAllMenu'
             let headers = { Authorization: 'Bearer ' + accessToken}
             const body = data
             log('url, headers, body', { url, headers, body })
@@ -24,12 +24,12 @@ exports.getAllPriceList = (data, accessToken) =>
         }
     })
 
-exports.getPricelistData = (id, accessToken) =>
+exports.getMenuData = (id, accessToken) =>
     new Promise(async(resolve, reject) => {
-        let log = debug('webadmin:pricelist:queries:getPricelistData')
-        log('[webadmin][pricelist][Query] getPricelistData', { id, accessToken })
+        let log = debug('webadmin:menu:queries:getMenuData')
+        log('[webadmin][menu][Query] getMenuData', { id, accessToken })
         try {
-            const url = service.api + 'admin/getPricelistById'
+            const url = service.api + 'admin/getMenuById'
             let headers = { Authorization: 'Bearer ' + accessToken }
             const body = { id }
             log('url, headers, body', { url, headers, body })
@@ -42,14 +42,14 @@ exports.getPricelistData = (id, accessToken) =>
         }
     })
 
-exports.create = ({ priceName, jobType, price, unit, accessToken }) =>
+exports.create = ({ menu, accessToken }) =>
     new Promise(async(resolve, reject) => {
-        let log = debug('webadmin:pricelist:queries:create')
-        log('[webadmin][pricelist][Query] create', { priceName, jobType, price, unit, accessToken })
+        let log = debug('webadmin:menu:queries:create')
+        log('[webadmin][menu][Query] create', { menu, accessToken })
         try {
-            const url = service.api + 'admin/addPricelist'
+            const url = service.api + 'admin/addMenu'
             let headers = { Authorization: 'Bearer ' + accessToken }
-            const body = { priceName, jobType, price, unit }
+            const body = { menu }
             log('url, headers, body', { url, headers, body })
             const response = await post(url, headers, body)
             log('response', response)
@@ -60,14 +60,14 @@ exports.create = ({ priceName, jobType, price, unit, accessToken }) =>
         }
     })
 
-exports.editPricelistData = ({ id, priceName, jobType, price, unit, accessToken }) =>
+exports.editMenuData = ({ id, menu, accessToken }) =>
     new Promise(async(resolve, reject) => {
-        let log = debug('webadmin:pricelist:queries:editPricelistData')
-        log('[webadmin][pricelist][Query] editPricelistData', { id, priceName, jobType, price, unit, accessToken })
+        let log = debug('webadmin:menu:queries:editMenuData')
+        log('[webadmin][menu][Query] editMenuData', { id, menu, accessToken })
         try {
-            const url = service.api + 'admin/editPricelist'
+            const url = service.api + 'admin/editMenu'
             let headers = { Authorization: 'Bearer ' + accessToken }
-            const body = { id, priceName, jobType, price, unit }
+            const body = { id, menu }
             log('url, headers, body', { url, headers, body })
             const response = await post(url, headers, body)
             log('response', response)
@@ -81,10 +81,10 @@ exports.editPricelistData = ({ id, priceName, jobType, price, unit, accessToken 
 
 exports.deleteById = (id, accessToken) =>
     new Promise(async(resolve, reject) => {
-        let log = debug('webadmin:pricelist:queries:deleteById')
-        log('[webadmin][pricelist][Query] deleteById', { id, accessToken })
+        let log = debug('webadmin:menu:queries:deleteById')
+        log('[webadmin][menu][Query] deleteById', { id, accessToken })
         try {
-            const url = service.api + 'admin/deletePricelist'
+            const url = service.api + 'admin/deleteMenu'
             let headers = { Authorization: 'Bearer ' + accessToken }
             const body = { id }
             log('url, headers, body', { url, headers, body })

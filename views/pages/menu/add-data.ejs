@@ -1,0 +1,73 @@
+<%-include('../../header/header.ejs')%>
+
+<%-include('../../navigation/nav.ejs')%>
+
+<%-include('../../menubar/top.ejs')%>
+
+<!-- page content -->
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Add Data Menu</h3>
+            </div>
+
+            <!-- <div class="title_right">
+                <div class="col-md-5 col-sm-5 form-group pull-right top_search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Go!</button>
+                        </span>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2><small>Menu</small></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                        </ul>
+                        <div class="clearfix"></div>
+                        <div class="col-lg-12">
+                            <% if (errors) { %>
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <span style="text-align: center; color: white;"><%= errors %></span>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true" style="color: white;">&times;</span>
+                                    </button>
+                                </div>
+                            <% } %>
+                        </div>
+                    </div>
+                    <div class="x_content">
+                        <form action="/menu/addMenu" method="post" validate>
+                            <div class="field item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3  label-align">Menu<span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6">
+                                    <input class="form-control" class='optional' name="menu" id='menu' placeholder="Menu.." data-validate-length-range="5,15" type="text" /></div>
+                            </div>
+                            <div class="ln_solid">
+                                <div class="form-group">
+                                    <div class="col-md-6 offset-md-3">
+                                        <button type='submit' class="btn btn-primary openActionAddPricelist" data-toggle='modal'>Add</button>
+                                        <button type='reset' class="btn btn-success">Reset</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /page content -->
+<%-include('../../modals/price/added.ejs')%>
+
+<%-include('../../footer/footer.ejs')%> 
